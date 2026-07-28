@@ -1,0 +1,17 @@
+# FSI-Coatings 数值模拟环境
+# 安装: pip install -r requirements.txt
+
+# 科学计算核心
+numpy>=1.24
+scipy>=1.10
+matplotlib>=3.7
+pandas>=2.0
+jupyter>=1.0
+
+# 网络
+requests>=2.28
+
+# 注: FEniCSx 需要通过 conda 安装:
+#   conda create -n fenicsx -c conda-forge fenics-dolfinx
+# OpenFOAM 和 preCICE 需要通过系统包管理器或 docker 安装
+# 详见 shared/references/software-install-guide.md
