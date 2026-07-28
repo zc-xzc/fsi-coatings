@@ -1,23 +1,39 @@
+# Python
 __pycache__/
 *.py[cod]
 *.so
 .venv/
 venv/
 env/
+
+# Data
 data/raw/*
 data/processed/*
 data/results/*
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !data/results/.gitkeep
+
+# Documents & Archives
 *.pdf
 *.zip
 *.tar.gz
+*.7z
+*.pptx
+!presentations/**/*.pptx
+
+# IDE
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
+
+# OS
 .DS_Store
 Thumbs.db
+
+# LaTeX
 *.aux
 *.log
 *.out
@@ -25,8 +41,14 @@ Thumbs.db
 *.bbl
 *.blg
 *.synctex.gz
+*.fdb_latexmk
+*.fls
+
+# Simulation Files (OpenFOAM/FEniCS)
 *.foam
 *.vtu
 *.pvtu
+*.h5
+*.xdmf
 postProcessing/
 constant/polyMesh/
