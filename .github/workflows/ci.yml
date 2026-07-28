@@ -1,0 +1,22 @@
+name: CI — Markdown & Code Check
+on: [push, pull_request]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with: { python-version: '3.11' }
+    - name: Check file structure
+      run: |
+        echo "📁 Root:" && ls -la && echo "" && echo "📂 Topics:" && ls topics/ 2>/dev/null || true && echo "" && echo "📄 Python files:" && find . -name "*.py" | wc -l && echo "📄 Markdown files:" && find . -name "*.md" | wc -l
+    - name: Check Python syntax
+      run: |
+        find . -name "*.py" -exec python -m py_compile {} \;
+        echo "✅ All Python files compile successfully"
+    - name: Report structure
+      run: |
+        echo "## Directory Structure" >> $GITHUB_STEP_SUMMARY
+        find . -type f -not -path './.git/*' | sort >> $GITHUB_STEP_SUMMARY

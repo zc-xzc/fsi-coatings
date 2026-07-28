@@ -1,0 +1,27 @@
+# FSI-Coatings 开发环境 (Docker)
+# 构建: docker compose build
+# 启动: docker compose up -d
+# 进入: docker compose exec fsi bash
+
+services:
+  fsi:
+    image: dolfinx/dolfinx:stable
+    container_name: fsi-coatings
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+      - ./.bashrc:/root/.bashrc
+    ports:
+      - "8888:8888"  # Jupyter
+      - "6006:6006"  # TensorBoard
+    environment:
+      - SHELL=/bin/bash
+    stdin_open: true
+    tty: true
+    command: >
+      bash -c "
+      pip install numpy scipy matplotlib jupyter pandas &&
+      apt-get update && apt-get install -y gmsh &&
+      jupyter lab --ip=0.0.0.0 --port=8888 --allow-root &
+      tail -f /dev/null
+      "
