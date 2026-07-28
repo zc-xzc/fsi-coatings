@@ -9,11 +9,9 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with: { python-version: '3.11' }
-    - name: Check Markdown links
+    - name: Check file structure
       run: |
-        pip install markdown-link-check
-        # find . -name "*.md" -exec markdown-link-check {} \;
-        echo "Markdown check enabled (install markdown-link-check to activate)"
+        echo "📁 Root:" && ls -la && echo "" && echo "📂 Topics:" && ls topics/ 2>/dev/null || true && echo "" && echo "📄 Python files:" && find . -name "*.py" | wc -l && echo "📄 Markdown files:" && find . -name "*.md" | wc -l
     - name: Check Python syntax
       run: |
         find . -name "*.py" -exec python -m py_compile {} \;
